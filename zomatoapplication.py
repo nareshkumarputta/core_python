@@ -37,10 +37,37 @@ class zomato:
             else:
                 print(f"Your Bill for item {self.item[n]['name']} is: {self.item[n]['price']}")
         else:
-            print("Invalid Item")
+            print("Item Not Avaialable in The Menu")
 
 r=input("enter your restuarent name:")
 obj1=zomato(r)
 if obj1.restuarent_name in zomato.lor:
     n=int(input("Select Your Order:"))
     obj1.order(n)
+
+# class Swiggy:
+#     rest_names = set({})
+#     rno = 0
+#     discount = 0.2
+#     coupon = "Happy"
+#     def __init__(self, rname, ritems):
+#         Swiggy.rno += 1
+#         self.rid = Swiggy.rno
+#         self.rname = rname
+#         Swiggy.rest_names.add(rname)
+#         self.ritems = ritems
+# Paradise = Swiggy("Paradise", {"Chicken Biryani": 120, "Mutton Biryani" : 200})
+# Mehfil = Swiggy("Mehfil",{"Chicken Biryani": 220, "Mutton Biryani" : 200})
+# # print(Swiggy.rest_names)
+# c = 0
+# for i in Swiggy.rest_names:
+#     c += 1
+#     print(c, i)
+# choice = int(input("Enter the Choice"))
+# c = 0
+# if choice == 1:
+#     for i in Mehfil.ritems.items():
+#         c += 1
+#         print(c, i)
+
+        
