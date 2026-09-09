@@ -3,6 +3,8 @@ def dec(func):
         func(username,passw,first_call)
         if username==name and passw==password:
             print("Authentication Successfull")
+        if first_call and usa==3:
+            print("Authentication Failed")
     return wrap
 name='Naresh'
 password=1234
