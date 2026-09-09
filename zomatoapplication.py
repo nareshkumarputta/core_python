@@ -1,46 +1,67 @@
-class zomato:
-    discount=0.20
-    coupon_code='zomato70x'
-    lor={'mehfil','paradise','bawarchi'}
-    restuarent_number=0
-    def __init__(self,restuarent_name):
-        self.restuarent_name=restuarent_name
-        self.item={
-                    1: {"name": "Pizza", "price": 250},
-                    2: {"name": "Burger", "price": 150},
-                    3: {"name": "Pasta", "price": 200},
-                    4: {"name": "Sandwich", "price": 120},
-                    5: {"name": "French Fries", "price": 100},
-                    6: {"name": "Noodles", "price": 180},
-                    7: {"name": "Egg_Biryani", "price": 250},
-                    8: {"name": "Chicken Wings", "price": 300},
-                    9: {"name": "Ice Cream", "price": 80},
-                    10:{"name": "Cold Drink", "price": 50},
-                    11:{"name":"chicken_biryani","price":560},
-                    12:{"name":"mutton_biryani","price":780}}
-        zomato.restuarent_number+=1
-        self.restuarent_id=zomato.restuarent_number
-        if restuarent_name in zomato.lor:
-            print("Menu List:")
-            for key,value in self.item.items():
-                    print(f"{key}:{value}")
-        else:
-            print("Restuarent not available")
-    def order(self,n):
-        if n in self.item:
-            print("Your Selected Item is:",self.item[n]['name'])
-            self.price=self.item[n]['price']
-            p=input("Enter Your Coupon Code:")
-            if p==zomato.coupon_code:
-                self.price=self.price-self.price*zomato.discount
-                print("Your Final Bill After Applied Discount:",self.price)
-            else:
-                print(f"Your Bill for item {self.item[n]['name']} is: {self.item[n]['price']}")
-        else:
-            print("Item Not Avaialable in The Menu")
+class Zomato:
+    restaurant_names = []
+    restaurant_no = 0
+    coupon_code = "PY20"
+    discount = 0.2
+    def __init__(self, restaurant_name , restaurant_menu):
+        Zomato.restaurant_no += 1
+        self.restaurant_name = restaurant_name
+        self.restaurant_id = Zomato.restaurant_no
+        self.restaurant_menu = restaurant_menu
+        Zomato.restaurant_names.append(restaurant_name)
+Paradise = Zomato("Paradise",
+                  {"Chicken Biryani" : 200,
+                   "Mutton Biryani" : 300,
+                   "Coke" : 40})
+Pista_House= Zomato("Pista House",
+                  {"Chicken Biryani" : 250,
+                   "Mutton Biryani" : 290,
+                   "Apricot Delight" : 200})
+KFC = Zomato("KFC",
+                  {"Chicken Burger" : 200,
+                   "Chicken Wings" : 350,
+                   "Coke" : 40,
+                   "Fries" : 70})
+def order(item_no, restaurant):
+    order_items = list(restaurant.restaurant_menu.items())
+    cost = order_items[item_no - 1][1]
+    print("Your Cart Value is :Rs.", cost)
+    print("Do you have a coupon code ?")
+    cc = input("Y / N ?")
+    if cc == 'Y':
+        code = input("Enter the Coupon Code :")
+        if code == Zomato.coupon_code:
+            cost = cost - cost * Zomato.discount
+        else :
+            print("Invalid Coupon Code.")
+    print("Your Final Bill is :Rs.", cost)
+c = 0
+for i in Zomato.restaurant_names:
+    c += 1
+    print(c ,":", i)
+choice = int(input("Enter the Restaurant Number :"))
+if choice == 1:
+    c = 0
+    for i in Paradise.restaurant_menu.items():
+        c += 1
+        print(c, ":", i)
+    item_no = int(input("Enter Your Item Number"))
+    order(item_no, Paradise)
+elif choice == 2:
+    c = 0
+    for i in Pista_House.restaurant_menu.items():
+        c += 1
+        print(c, ":", i)
+    item_no = int(input("Enter Your Item Number"))
+    order(item_no, Pista_House)
+elif choice == 3:
+    c = 0
+    for i in KFC.restaurant_menu.items():
+        c += 1
+        print(c, ":", i)
+    item_no = int(input("Enter Your Item Number"))
+    order(item_no, KFC)
+else:
+    print("Invalid Input")
 
-r=input("enter your restuarent name:")
-obj1=zomato(r)
-if obj1.restuarent_name in zomato.lor:
-    n=int(input("Select Your Order:"))
-    obj1.order(n)
+
