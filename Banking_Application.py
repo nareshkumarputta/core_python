@@ -14,7 +14,7 @@ class Bank:
             self.balance -= amount
             print(f"Your account XXXXX{self.accno %10000} has been debited with amount Rs.",amount)
         else:
-            if amount <= self.balance:
+            if amount < self.balance:
                 print("Insufficient Funds.")
             else:
                 print("Invalid Amount.")
